@@ -26,7 +26,7 @@ class processTest(myunit.MyTest):
             # #补签
             # process(self.driver).resigned("打卡机损坏")
             # #其他假
-            process(self.driver).other_withendtime("陪客户吃饭","杭州宇泛智能科技赵总来访")
+            # process(self.driver).other_withendtime("陪客户吃饭","杭州宇泛智能科技赵总来访")
             # process(self.driver).other_withoutendtime("陪客户吃饭", "杭州宇泛智能科技赵总来访")
             #申请中详情
             processResult(self.driver).processing_detail("其他申请")
