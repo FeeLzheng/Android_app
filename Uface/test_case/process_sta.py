@@ -31,7 +31,7 @@ class processTest(myunit.MyTest):
             #申请中详情
             processResult(self.driver).processing_detail("其他申请")
             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "其他:陪客户吃饭")
-            #其他申请的开始时间
+            #其他申请的开始时
             # print("请假开始时间全局变量返回")
             # print(process(self.driver).time_other)
             # print("请假开始时间全局变量方法返回")
