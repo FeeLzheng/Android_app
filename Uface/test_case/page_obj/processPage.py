@@ -16,20 +16,50 @@ class process(Page):
         time_other=datetime.datetime.now()
 
         return time_other
-
+#返回其他的系统时间
     def returnSystemtime1(self):
 
         return time_other
 
+
 #获取系统时间_补签时间
+    time_resign = datetime.datetime.now() - datetime.timedelta(days=1)
     def Systemtime2(self):
-        time = datetime.datetime.now()
+        global time_resign
+        time_resign = datetime.datetime.now()
         # Date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         # Hour = time.strftime('%H', time.localtime(time.time()))
         # Minutes = time.strftime('%M', time.localtime(time.time()))
 
-        return time
+        return time_resign
 
+#返回补签的系统时间
+    def returnSystemtime2(self):
+
+        return time_resign
+
+#出差当天系统时间
+    time_outwork=datetime.date.today()
+    def Systemtime3(self):
+        global time_outwork
+        time_outwork=datetime.date.today()
+        return time_outwork
+
+    def returnSystemtime3(self):
+
+        return time_outwork
+
+#请假当天系统时间
+
+    time_leave=datetime.datetime.now()
+    def Systemtime4(self):
+        global time_leave
+        time_leave=datetime.datetime.now()
+        return time_leave
+
+    def returnSystemtime4(self):
+
+        return time_leave
 
 #菜单栏中的流程
     prcess_loc=(By.ID,"com.uniubi.attendance:id/ll_processs")
@@ -195,6 +225,8 @@ class process(Page):
         self.process_click()
         #点击请假
         self.leave_click()
+        self.Systemtime4()
+        print(self.Systemtime4())
         #选请假类型
         self.process_type(i)
         #点击开始时间
@@ -278,11 +310,15 @@ class process(Page):
         sleep(5)
         self.process_click()
         #点击补签
+        self.Systemtime2()
         self.resigned_click()
+        # 获取系统时间
         #点击补签时间
         self.resign_time_click()
-        # 获取系统时间
-        self.Systemtime2()
+        print(self.find_elements(*self.start_time)[1].text)
+        print(self.find_elements(*self.start_time)[2].text)
+
+
         #选择补签时间
         self.resigned_choose_time()
         #选择补签理由
@@ -409,6 +445,8 @@ class process(Page):
         self.process_click()
         #点击其他流程
         self.other_click()
+        #系统时间
+        self.Systemtime1()
         #填写其他流程标题
         self.other_title(title)
         #点击开始时间
@@ -468,6 +506,8 @@ class process(Page):
         self.process_click()
         #点击出差
         self.outwork_click()
+        self.Systemtime3()
+
         #选择开始时间
         self.outwork_choose_starttime()
         #选择结束时间
@@ -483,3 +523,44 @@ class process(Page):
         #提交
         self.outwork_commit()
 
+
+    def outwork_choose_starttime_future(self):
+        start_time=(By.ID,"android:id/numberpicker_input")
+        start_time_button=(By.ID,"android:id/button1")
+        startTime_H = int(self.find_elements(*self.start_time)[1].text)
+        startTime_M = int(self.find_elements(*self.start_time)[2].text)
+    # 获取小时坐标
+        x1 = int(self.getSize()[0] * 0.7)
+        y1 = int(self.getSize()[1] * 0.82)
+        y2 = int(self.getSize()[1] * 0.75)
+
+
+
+        self.driver.swipe(x1, y1, x1, y2, 500)
+
+        self.find_element(*self.outwork_starttime_loc).click()
+
+#统一未来出差接口
+
+    def outwork_future(self,reason):
+        sleep(5)
+        #点击流程
+        self.process_click()
+        #点击出差
+        self.outwork_click()
+        self.Systemtime3()
+
+        #选择开始时间
+        self.outwork_choose_starttime_future()
+        #选择结束时间
+        self.outwork_choose_endtime()
+        #出差理由
+        self.outwork_reason(reason)
+        #抄送人
+        self.copyTo_click()
+        self.copyTo_employee()
+        #审批人
+        self.approver_click()
+        self.approver_employee()
+        #提交
+        self.outwork_commit()

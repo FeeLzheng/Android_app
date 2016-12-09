@@ -91,6 +91,21 @@ class login(Page):
         self.loginButton()
 
 
+#退出
+    #菜单栏中的我
+    mine_loc=(By.ID,"com.uniubi.attendance:id/iv_main_activity_meinfo")
+    #点击菜单栏中的我
+    def mine_click(self):
+        self.find_elemnt(*self.mine_loc).click()
+    #我中的设置
+    mine_setting_loc=(By.ID,"com.uniubi.attendance:id/iv_meinfo_setting")
+    #点击设置
+    def mint_setting_click(self):
+        self.find_elemnt(*self.mine_setting_loc).click()
+
+
+
+
 
 
 
