@@ -25,6 +25,7 @@ class login(Page):
 
 #填写用户名
     def email(self,email):
+
         self.find_element(*self.email_loc).click()
         self.find_element(*self.email_loc).clear()
         self.find_element(*self.email_loc).send_keys(email)
@@ -96,12 +97,59 @@ class login(Page):
     mine_loc=(By.ID,"com.uniubi.attendance:id/iv_main_activity_meinfo")
     #点击菜单栏中的我
     def mine_click(self):
-        self.find_elemnt(*self.mine_loc).click()
+        self.find_element(*self.mine_loc).click()
     #我中的设置
     mine_setting_loc=(By.ID,"com.uniubi.attendance:id/iv_meinfo_setting")
     #点击设置
     def mint_setting_click(self):
-        self.find_elemnt(*self.mine_setting_loc).click()
+        self.find_element(*self.mine_setting_loc).click()
+
+    #退出登入
+
+    logoff_loc=(By.ID,"com.uniubi.attendance:id/tv_logoff")
+    def logoff_click(self):
+        self.find_element(*self.logoff_loc).click()
+
+    #取消确定按钮
+
+    cancleButton_loc=(By.ID,"android:id/button2")
+    sureButton_loc=(By.ID,"android:id/button1")
+
+    def setting_sureButton_click(self):
+        self.find_element(*self.sureButton_loc).click()
+
+    def setting_cancleButton_click(self):
+        self.find_element(*self.cancleButton_loc).click()
+
+
+    #定义统一退出接口
+    def logoff(self):
+        sleep(5)
+        #点击菜单栏中的我
+        self.mine_click()
+        #点击设置
+        self.mint_setting_click()
+        #点击退出登入
+        self.logoff_click()
+        #点击取消
+        self.setting_cancleButton_click()
+        #再次点击退出登入
+        self.logoff_click()
+        #点击确认
+        self.setting_sureButton_click()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

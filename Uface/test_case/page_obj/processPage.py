@@ -525,10 +525,7 @@ class process(Page):
 
 
     def outwork_choose_starttime_future(self):
-        start_time=(By.ID,"android:id/numberpicker_input")
-        start_time_button=(By.ID,"android:id/button1")
-        startTime_H = int(self.find_elements(*self.start_time)[1].text)
-        startTime_M = int(self.find_elements(*self.start_time)[2].text)
+        self.find_element(*self.outwork_starttime_loc).click()
     # 获取小时坐标
         x1 = int(self.getSize()[0] * 0.7)
         y1 = int(self.getSize()[1] * 0.82)
@@ -538,7 +535,7 @@ class process(Page):
 
         self.driver.swipe(x1, y1, x1, y2, 500)
 
-        self.find_element(*self.outwork_starttime_loc).click()
+        self.find_elements(*self.outwork_surebutton_loc)[1].click()
 
 #统一未来出差接口
 

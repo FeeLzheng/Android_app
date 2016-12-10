@@ -241,7 +241,7 @@ class processResult(Page):
                         t.click()
                         break
                 break
-        print("无"+type+"申请需要审批")
+
 
 #需要审批中的详情
 
@@ -346,8 +346,17 @@ class processResult(Page):
             sleep(2)
             #选择审批人
             self.approving_choose_applier()
+            self.approving_notbutton_click()
+            self.approving_choose_applier()
+            self.approving_surebutton_click()
+            self.keyevent(4)
         else:
             self.approving_disagreebutton_click()
+            self.approving_notbutton_click()
+            self.approving_disagreebutton_click()
+            self.approving_surebutton_click()
+            self.keyevent(4)
+
 
 
 #无第二审批人接口
@@ -375,11 +384,15 @@ class processResult(Page):
             self.approving_agreebutton_click()
             sleep(2)
             self.approving_notbutton_click()
+            self.approving_agreebutton_click()
+            self.approving_surebutton_click()
+            self.keyevent(4)
 
         else:
             self.approving_disagreebutton_click()
             sleep(2)
             self.approving_surebutton_click()
+            self.keyevent(4)
 
 
 #已审批
