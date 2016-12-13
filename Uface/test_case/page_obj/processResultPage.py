@@ -36,11 +36,13 @@ class processResult(Page):
             i=0
 
             while(i<10):
+                sleep(2)
                 title=self.find_elements(*self.processing_detail_loc)[i]
 
                 i=i+1
                 if (title.text==type):
                     title.click()
+                    sleep(1)
                     break
         except Exception:
             print ("找不到"+type)
@@ -69,12 +71,16 @@ class processResult(Page):
 
     def processing_detailInfo_name1(self):
         return self.find_elements(*self.processing_detial_name)[1].text
+    def processing_detailInfo_name2(self):
+        return self.find_elements(*self.processing_detial_name)[2].text
 
     def processing_detailInfo_status0(self):
         return self.find_elements(*self.processing_detail_status)[0].text
 
     def processing_detailInfo_status1(self):
         return self.find_elements(*self.processing_detail_status)[1].text
+    def processing_detailInfo_status2(self):
+        return self.find_elements(*self.processing_detail_status)[2].text
 
 #统一撤销接口
     def processing_detail(self,type):
@@ -349,13 +355,13 @@ class processResult(Page):
             self.approving_notbutton_click()
             self.approving_choose_applier()
             self.approving_surebutton_click()
-            self.keyevent(4)
+            self.driver.keyevent(4)
         else:
             self.approving_disagreebutton_click()
             self.approving_notbutton_click()
             self.approving_disagreebutton_click()
             self.approving_surebutton_click()
-            self.keyevent(4)
+            self.driver.keyevent(4)
 
 
 
@@ -386,13 +392,13 @@ class processResult(Page):
             self.approving_notbutton_click()
             self.approving_agreebutton_click()
             self.approving_surebutton_click()
-            self.keyevent(4)
+            self.driver.keyevent(4)
 
         else:
             self.approving_disagreebutton_click()
             sleep(2)
             self.approving_surebutton_click()
-            self.keyevent(4)
+            self.driver.keyevent(4)
 
 
 #已审批

@@ -45,6 +45,7 @@ class login(Page):
 
     def loginButton(self):
         self.find_element(*self.login_button_loc).click()
+        sleep(2)
 
 
 #点击找回密码

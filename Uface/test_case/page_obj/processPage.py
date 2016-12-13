@@ -27,10 +27,6 @@ class process(Page):
     def Systemtime2(self):
         global time_resign
         time_resign = datetime.datetime.now()
-        # Date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        # Hour = time.strftime('%H', time.localtime(time.time()))
-        # Minutes = time.strftime('%M', time.localtime(time.time()))
-
         return time_resign
 
 #返回补签的系统时间
@@ -49,6 +45,19 @@ class process(Page):
 
         return time_outwork
 
+#出差时间加一
+
+    time_outwork_future=datetime.date.today()
+
+    def Systemtime5(self):
+        global time_outwork_future
+        time_outwork_future=datetime.date.today() + datetime.timedelta(days=1)
+
+        return time_outwork_future
+
+    def returnSystemtime5(self):
+
+        return time_outwork_future
 #请假当天系统时间
 
     time_leave=datetime.datetime.now()
@@ -310,13 +319,14 @@ class process(Page):
         sleep(5)
         self.process_click()
         #点击补签
-        self.Systemtime2()
+        a=self.Systemtime2()
+        print(a)
         self.resigned_click()
         # 获取系统时间
         #点击补签时间
         self.resign_time_click()
-        print(self.find_elements(*self.start_time)[1].text)
-        print(self.find_elements(*self.start_time)[2].text)
+        # print(self.find_elements(*self.start_time)[1].text)
+        # print(self.find_elements(*self.start_time)[2].text)
 
 
         #选择补签时间
@@ -506,8 +516,6 @@ class process(Page):
         self.process_click()
         #点击出差
         self.outwork_click()
-        self.Systemtime3()
-
         #选择开始时间
         self.outwork_choose_starttime()
         #选择结束时间
@@ -540,12 +548,14 @@ class process(Page):
 #统一未来出差接口
 
     def outwork_future(self,reason):
-        sleep(5)
+        sleep(10)
         #点击流程
         self.process_click()
         #点击出差
         self.outwork_click()
-        self.Systemtime3()
+        a=self.Systemtime5()
+        print("系统时间+1")
+        print(a)
 
         #选择开始时间
         self.outwork_choose_starttime_future()
