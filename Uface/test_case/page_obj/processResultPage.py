@@ -116,6 +116,7 @@ class processResult(Page):
 
 #点击详情
     def passed_detail_click(self,type):
+        sleep(2)
         try:
             i=0
 
@@ -125,6 +126,7 @@ class processResult(Page):
                 i=i+1
                 if (title==type):
                     title_click.click()
+                    sleep(2)
                     break
         except Exception:
             print ("找不到"+type)
@@ -154,6 +156,22 @@ class processResult(Page):
     def passed_detialInfo_status1(self):
         passed_detail_status1 = self.find_elements(*self.passed_detail_status)[1].text
 
+
+
+#定义已通过统一接口
+
+    def passed(self,type):
+        sleep(5)
+        #点击菜单栏中的流程
+        self.process_click()
+        #点击已通过
+        self.passed_click()
+        #选择需要查看的流程
+        self.passed_detail_click(type)
+
+
+
+
 #已拒绝
     failed_loc=(By.ID,"com.uniubi.attendance:id/process_itemview_description")
     failed_detail_loc=(By.ID,"com.uniubi.attendance:id/tv_process_lv_type")
@@ -170,14 +188,19 @@ class processResult(Page):
 
 #点击详情
     def failed_detail_click(self,type):
-        i=0
-        while(i<10):
-            title=self.find_elements(*self.failed_detail_loc)[i].text
-            title_click=self.find_elements(*self.failed_detail_loc)[i]
-            i=i+1
-            if (title==type):
-                title_click.click()
-                break
+        try:
+            sleep(2)
+            i=0
+            while(i<10):
+                title=self.find_elements(*self.failed_detail_loc)[i].text
+                title_click=self.find_elements(*self.failed_detail_loc)[i]
+                i=i+1
+                if (title==type):
+                    title_click.click()
+                    sleep(2)
+                    break
+        except Exception:
+            print("找不到" + type)
 #详情信息
 
     def failed_detialInfo_title(self):
@@ -203,6 +226,17 @@ class processResult(Page):
 
     def failed_detialInfo_status1(self):
         return self.find_elements(*self.failed_detail_status)[1].text
+
+#定义统一已拒绝接口
+    def failed(self):
+        sleep(5)
+        #点击菜单栏中的流程
+        self.process_click()
+        #点击已拒绝
+        self.failed_click()
+        #选择查看已拒绝的流程
+        self.failed_detail_click(type)
+
 
 
 #需要我审批
@@ -404,6 +438,89 @@ class processResult(Page):
 #已审批
 
     approved_loc=(By.ID,"com.uniubi.attendance:id/process_itemview_description")
+    approved_loc = (By.ID, "com.uniubi.attendance:id/process_itemview_text")
+    approved_type_loc = (By.ID, "com.uniubi.attendance:id/tv_process_state")
+    approved_name_loc = (By.ID, "com.uniubi.attendance:id/tv_process_lv_type")
+    approved_detail_title = (By.ID, "com.uniubi.attendance:id/tv_type_text")
+    approved_detail_starttime = (By.ID, "com.uniubi.attendance:id/tv_process_start_time")
+    approved_detail_endtime = (By.ID, "com.uniubi.attendance:id/tv_process_end_time")
+    approved_detail_reason = (By.ID, "com.uniubi.attendance:id/tv_process_reason")
+    approved_detial_name = (By.ID, "com.uniubi.attendance:id/tv_process_detail_name")
+    approved_detail_status = (By.ID, "com.uniubi.attendance:id/tv_process_detail_type")
+
+    # 点击等待我审批
+    def approved_click(self):
+        self.find_elements(*self.approved_loc)[3].click()
+
+        # 判断需要请假的人和请假的类型
+
+    def approved_detail_click(self, name, type):
+        sleep(2)
+        i = 0
+        while (i < 10):
+            n = self.find_elements(*self.approved_name_loc)[i]
+            i = i + 1
+            if (n.text == name):
+                j = 0
+                while (j < 10):
+                    t = self.find_elements(*self.approved_type_loc)[j]
+                    j = j + 1
+                    if (t.text == type):
+                        t.click()
+                        sleep(1)
+                        break
+                break
+
+
+                # 需要审批中的详情
+
+    def approved_detialInfo_title(self):
+        return self.find_element(*self.approved_detail_title).text
+
+    def approved_detialInfo_starttime(self):
+        return self.find_element(*self.approved_detail_starttime).text
+
+    def approved_detialInfo_endtime(self):
+        return self.find_element(*self.approved_detail_endtime).text
+
+    def approved_detialInfo_reason(self):
+        return self.find_element(*self.approved_detail_reason).text
+
+    def approved_detialInfo_name0(self):
+        return self.find_elements(*self.approved_detial_name)[0].text
+
+    def approved_detialInfo_name1(self):
+        return self.find_elements(*self.approved_detial_name)[1].text
+
+    def approved_detialInfo_name2(self):
+        return self.find_elements(*self.approved_detial_name)[2].text
+
+    def approved_detialInfo_status0(self):
+        return self.find_elements(*self.approved_detail_status)[0].text
+
+    def approved_detialInfo_status1(self):
+        return self.find_elements(*self.approved_detail_status)[1].text
+
+    def approved_detialInfo_status2(self):
+        return self.find_elements(*self.approved_detail_status)[2].text
+
+#定义统一已审批解决
+    def approved(self,name,tpye):
+        sleep(5)
+        #点击流程
+        self.process_click()
+        #点击已经审批
+        self.approved_click()
+        #选择需要查看的已审批中流程的详情
+        self.approved_detail_click(name,type)
+
+
+
+
+
+
+
+
 
 
 
