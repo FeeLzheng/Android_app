@@ -12,29 +12,30 @@ from models.function import modifyTimeTpye
 
 
 class processTest(myunit.MyTest):
-        def test_process1(self):
-            #第一审批人
-            approver_employee="张波"
-            #第二审批人
-            approver_employee2 = "包曙源"
-            #申请人
-            applier="1郑晓龙1"
-            #申请人账号
-            email_applier1="18768172337"
-            password_applier1="172337"
-            #第一审批人账号
-            email_approver1="18868123457"
-            password_approver1="123457"
-            #第二审批人账号
-            email_approver2="18878123456"
-            password_approver2="123456"
-            #当天时间
-            Today=datetime.datetime.now()
-            Y=Today.strftime('%Y')
-            #把时间中出现的2位时间转换为1位  如09变9
-            m=int(Today.strftime('%m'))
-            d=int(Today.strftime('%d'))
-            Today=str(Y)+"-"+str(m)+"-"+str(d)
+    def test_process1(self):
+            # #第一审批人
+            # approver_employee="张波"
+            # #第二审批人
+            # approver_employee2 = "包曙源"
+            # #申请人
+            # applier="1郑晓龙1"
+            # #申请人账号
+            # email_applier1="18768172337"
+            # password_applier1="172337"
+            # #第一审批人账号
+            # email_approver1="18868123457"
+            # password_approver1="123457"
+            # #第二审批人账号
+            # email_approver2="18878123456"
+            # password_approver2="123456"
+            # #当天时间
+            # Today=datetime.datetime.now()
+            # Y=Today.strftime('%Y')
+            # #把时间中出现的2位时间转换为1位  如09变9
+            # m=int(Today.strftime('%m'))
+            # d=int(Today.strftime('%d'))
+            # Today=str(Y)+"-"+str(m)+"-"+str(d)
+        process(self.driver).leave(1, 10, 0, 11, 0, "请假一小时，有事情")  # 请事假，10点到11点
 
 
 
@@ -83,9 +84,9 @@ class processTest(myunit.MyTest):
 #             #撤销其他申请
 #             processResult(self.driver).backout()
 #             print("其他申请有结束时间的流程通过")
-
-
-
+#
+#
+     #
      # 其他流程无结束时间
      #        process(self.driver).other_withoutendtime("陪客户吃饭", "杭州宇泛智能科技赵总来访")
      #        processResult(self.driver).processing_detail("其他申请")
@@ -266,186 +267,186 @@ class processTest(myunit.MyTest):
         #     other_starttime2 = modifyTimeTpye(other_starttime2)
         #     other_endtime2 = modifyTimeTpye(other_endtime2)
         #     #请明天出差假
-#             process(self.driver).outwork_future("明天上海出差一整天")
-#             outwork_futuretime1 = process(self.driver).returnSystemtime5()
-#             outwork_futuretime1=outwork_futuretime1.strftime('%Y-%m-%d')
-#
-#
-#
-# #退出登入
-#
-#             login(self.driver).logoff()
-# #更换账号登入
-#             login(self.driver).login(email_approver1,password_approver1)
-#
-# #审批
-#         #审批出差-拒绝
-#             processResult(self.driver).approving(applier,"出差")
-#             #有第二审批人
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "出差")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),outwork_futuretime1)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),outwork_futuretime1)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "明天上海出差一整天")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail1("复议","拒绝")
-#             #切换申请人账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_applier1, password_applier1)
-#         #申请出差
-#             process(self.driver).outwork_future("明天上海出差一整天")
-#             outwork_futuretime2 = process(self.driver).returnSystemtime5()
-#             outwork_futuretime2=outwork_futuretime2.strftime('%Y-%m-%d')
-#         #审批出差-通过-有第二审批人
-#             #切换第一审批人账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver1, password_approver1)
-#             processResult(self.driver).approving(applier,"出差")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "出差")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),outwork_futuretime2)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),outwork_futuretime2)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "明天上海出差一整天")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail1("辛苦", "通过")
-#             #第二审批人
-#             # 切换第二审批人账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver2, password_approver2)
-#             processResult(self.driver).approving(applier, "出差")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "出差")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),outwork_futuretime2)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),outwork_futuretime2)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "明天上海出差一整天")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "已通过")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status2(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), approver_employee2)
-#             processResult(self.driver).approving_detail2("辛苦", "通过")
-#             # 切换第一审批人账号登入
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver1,password_approver1)
-#
-#
-#
-#         # 审批特殊假申请-拒绝--有第二审批人
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:特殊假")
-#             self.assertEprocessResult(self.driver).approving(applier, "请假")qual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  16:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  17:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请特殊假一小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail1("复议", "拒绝")
-#
-#             #切换申请人账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_applier1, password_applier1)
-#             process(self.driver).leave(5, 16, 0, 17, 0, "请特殊假一小时，有事情")  # 请特殊假，16点到17点
-#         # 审批特殊假申请-通过--第二审批人--拒绝
-#             # 切换第一审批人账号登入
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver1,password_approver1)
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:特殊假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  16:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  17:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请特殊假一小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail1("同意", "通过")
-#             #换账第二申请人账号登入
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver2, password_approver2)
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:特殊假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),(Today+"  16:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),(Today+"  17:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请特殊假一小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "已通过")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status2(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), approver_employee2)
-#             processResult(self.driver).approving_detail2("拒绝", "拒绝")
-#
-#             # 切换第一申请人账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver1, password_approver1)
-#
-#
-#         # 审批产假申请-拒绝--无第二审批人
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:产假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  15:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  16:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请产假一小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail2("复议", "拒绝")
-#             # 切换申请账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_applier1, password_applier1)
-#             process(self.driver).leave(4, 15, 0, 16, 0, "请产假一小时，有事情")  # 请产假，15点到16点
-#             #切换审批账号
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver1,password_approver1)
-#         # 审批产假申请-通过--第二审批人--通过
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:产假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  15:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  16:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请产假一小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail1("同意", "通过")
-#             #换账号登入
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_approver2,password_approver2)
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:产假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),(Today+"  15:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),(Today+"  16:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请产假一小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "通过")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status2(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), approver_employee2)
-#             processResult(self.driver).approving_detail2("辛苦", "通过")
-#             # 切换回原账号登入
-#             login(self.driver).logoff()
-#             login(self.driver).login(email_applier1, password_applier1)
-#
-#
-#         # 审批年假申请-拒绝--无第二审批人
-#             processResult(self.driver).approving(applier, "请假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:年假")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  13:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  15:00"))
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请年假二小时，有事情")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
-#             self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
-#             processResult(self.driver).approving_detail2("复议", "拒绝")
+            process(self.driver).outwork_future("明天上海出差一整天")
+            outwork_futuretime1 = process(self.driver).returnSystemtime5()
+            outwork_futuretime1=outwork_futuretime1.strftime('%Y-%m-%d')
+
+
+
+#退出登入
+
+            login(self.driver).logoff()
+#更换账号登入
+            login(self.driver).login(email_approver1,password_approver1)
+
+#审批
+        #审批出差-拒绝
+            processResult(self.driver).approving(applier,"出差")
+            #有第二审批人
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "出差")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),outwork_futuretime1)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),outwork_futuretime1)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "明天上海出差一整天")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail1("复议","拒绝")
+            #切换申请人账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_applier1, password_applier1)
+        #申请出差
+            process(self.driver).outwork_future("明天上海出差一整天")
+            outwork_futuretime2 = process(self.driver).returnSystemtime5()
+            outwork_futuretime2=outwork_futuretime2.strftime('%Y-%m-%d')
+        #审批出差-通过-有第二审批人
+            #切换第一审批人账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver1, password_approver1)
+            processResult(self.driver).approving(applier,"出差")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "出差")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),outwork_futuretime2)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),outwork_futuretime2)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "明天上海出差一整天")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail1("辛苦", "通过")
+            #第二审批人
+            # 切换第二审批人账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver2, password_approver2)
+            processResult(self.driver).approving(applier, "出差")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "出差")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),outwork_futuretime2)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),outwork_futuretime2)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "明天上海出差一整天")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "已通过")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status2(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), approver_employee2)
+            processResult(self.driver).approving_detail2("辛苦", "通过")
+            # 切换第一审批人账号登入
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver1,password_approver1)
+
+
+
+        # 审批特殊假申请-拒绝--有第二审批人
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:特殊假")
+            self.assertEprocessResult(self.driver).approving(applier, "请假")qual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  16:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  17:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请特殊假一小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail1("复议", "拒绝")
+
+            #切换申请人账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_applier1, password_applier1)
+            process(self.driver).leave(5, 16, 0, 17, 0, "请特殊假一小时，有事情")  # 请特殊假，16点到17点
+        # 审批特殊假申请-通过--第二审批人--拒绝
+            # 切换第一审批人账号登入
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver1,password_approver1)
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:特殊假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  16:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  17:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请特殊假一小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail1("同意", "通过")
+            #换账第二申请人账号登入
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver2, password_approver2)
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:特殊假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),(Today+"  16:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),(Today+"  17:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请特殊假一小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "已通过")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status2(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), approver_employee2)
+            processResult(self.driver).approving_detail2("拒绝", "拒绝")
+
+            # 切换第一申请人账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver1, password_approver1)
+
+
+        # 审批产假申请-拒绝--无第二审批人
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:产假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  15:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  16:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请产假一小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail2("复议", "拒绝")
+            # 切换申请账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_applier1, password_applier1)
+            process(self.driver).leave(4, 15, 0, 16, 0, "请产假一小时，有事情")  # 请产假，15点到16点
+            #切换审批账号
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver1,password_approver1)
+        # 审批产假申请-通过--第二审批人--通过
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:产假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  15:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  16:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请产假一小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail1("同意", "通过")
+            #换账号登入
+            login(self.driver).logoff()
+            login(self.driver).login(email_approver2,password_approver2)
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:产假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),(Today+"  15:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),(Today+"  16:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请产假一小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "通过")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status2(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), approver_employee2)
+            processResult(self.driver).approving_detail2("辛苦", "通过")
             # 切换回原账号登入
+            login(self.driver).logoff()
+            login(self.driver).login(email_applier1, password_applier1)
+
+
+        # 审批年假申请-拒绝--无第二审批人
+            processResult(self.driver).approving(applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:年假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(), (Today+"  13:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(), (Today+"  15:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请年假二小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), approver_employee)
+            processResult(self.driver).approving_detail2("复议", "拒绝")
+            切换回原账号登入
             login(self.driver).logoff()
             login(self.driver).login(email_applier1, password_applier1)
             process(self.driver).leave(3, 13, 0, 15, 0, "请年假二小时，有事情")  # 请年假，13点到15点
@@ -710,3 +711,77 @@ class processTest(myunit.MyTest):
 
 if __name__=="__main__":
     unittest.main()
+    suite.addTest(processTest("test_process1"))
+    suite.addTest(processTest("test_process2"))
+    suite.addTest(processTest("test_process3"))
+    suite.addTest(processTest("test_process4"))
+    suite.addTest(processTest("test_process5"))
+    suite.addTest(processTest("test_process6"))
+    suite.addTest(processTest("test_process7"))
+    suite.addTest(processTest("test_process8"))
+    suite.addTest(processTest("test_process9"))
+    suite.addTest(processTest("test_process10"))
+    suite.addTest(processTest("test_process11"))
+    suite.addTest(processTest("test_process12"))
+    suite.addTest(processTest("test_process13"))
+    suite.addTest(processTest("test_process14"))
+    suite.addTest(processTest("test_process15"))
+    suite.addTest(processTest("test_process16"))
+    suite.addTest(processTest("test_process17"))
+    suite.addTest(processTest("test_process18"))
+    suite.addTest(processTest("test_process19"))
+    suite.addTest(processTest("test_process20"))
+    suite.addTest(processTest("test_process21"))
+    suite.addTest(processTest("test_process22"))
+    suite.addTest(processTest("test_process23"))
+    suite.addTest(processTest("test_process24"))
+    suite.addTest(processTest("test_process25"))
+    suite.addTest(processTest("test_process26"))
+    suite.addTest(processTest("test_process27"))
+    suite.addTest(processTest("test_process28"))
+    suite.addTest(processTest("test_process29"))
+    suite.addTest(processTest("test_process30"))
+    suite.addTest(processTest("test_process31"))
+    suite.addTest(processTest("test_process32"))
+    suite.addTest(processTest("test_process33"))
+    suite.addTest(processTest("test_process34"))
+    suite.addTest(processTest("test_process35"))
+    suite.addTest(processTest("test_process36"))
+    suite.addTest(processTest("test_process37"))
+    suite.addTest(processTest("test_process38"))
+    suite.addTest(processTest("test_process39"))
+    suite.addTest(processTest("test_process40"))
+    suite.addTest(processTest("test_process41"))
+    suite.addTest(processTest("test_process42"))
+    suite.addTest(processTest("test_process43"))
+    suite.addTest(processTest("test_process44"))
+    suite.addTest(processTest("test_process45"))
+    suite.addTest(processTest("test_process46"))
+    suite.addTest(processTest("test_process47"))
+    suite.addTest(processTest("test_process48"))
+    suite.addTest(processTest("test_process49"))
+    suite.addTest(processTest("test_process50"))
+    suite.addTest(processTest("test_process51"))
+    suite.addTest(processTest("test_process52"))
+    suite.addTest(processTest("test_process53"))
+    suite.addTest(processTest("test_process54"))
+    suite.addTest(processTest("test_process55"))
+    suite.addTest(processTest("test_process56"))
+    suite.addTest(processTest("test_process57"))
+    suite.addTest(processTest("test_process58"))
+    suite.addTest(processTest("test_process59"))
+    suite.addTest(processTest("test_process60"))
+    suite.addTest(processTest("test_process61"))
+    suite.addTest(processTest("test_process62"))
+    suite.addTest(processTest("test_process63"))
+    suite.addTest(processTest("test_process64"))
+    suite.addTest(processTest("test_process65"))
+    suite.addTest(processTest("test_process66"))
+    suite.addTest(processTest("test_process67"))
+    suite.addTest(processTest("test_process68"))
+    suite.addTest(processTest("test_process69"))
+    suite.addTest(processTest("test_process70"))
+    suite.addTest(processTest("test_process71"))
+    suite.addTest(processTest("test_process72"))
+    suite.addTest(processTest("test_process73"))
+    suite.addTest(processTest("test_process74"))

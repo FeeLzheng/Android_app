@@ -29,6 +29,8 @@ class MyTest(unittest.TestCase):
     def tearDown(self):
         sleep(2)
         print("APP退出")
+        self.driver.keyevent(4)
+        self.driver.keyevent(4)
         self.driver.quit()
 
 

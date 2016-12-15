@@ -425,7 +425,9 @@ class process(Page):
         #点击其他流程
         self.other_click()
         #系统时间
-        self.Systemtime1()
+        a=self.Systemtime1()
+        print("系统时间")
+        print(a)
         #填写其他流程标题
         self.other_title(title)
         #点击开始时间

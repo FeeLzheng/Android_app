@@ -132,28 +132,28 @@ class processResult(Page):
             print ("找不到"+type)
 #详情信息
 
-    def passed_detialInfo_title(self):
+    def passed_detailInfo_title(self):
         return self.find_element(*self.passed_detail_title).text
 
-    def passed_detialInfo_starttime(self):
+    def passed_detailInfo_starttime(self):
         return self.find_element(*self.passed_detail_starttime).text
 
-    def passed_detialInfo_endtime(self):
+    def passed_detailInfo_endtime(self):
         return  self.find_element(*self.passed_detail_endtime).text
 
-    def passed_detialInfo_reason(self):
+    def passed_detailInfo_reason(self):
         return  self.find_element(*self.passed_detail_reason).text
 
-    def passed_detialInfo_name0(self):
+    def passed_detailInfo_name0(self):
         return  self.find_elements(*self.passed_detial_name)[0].text
 
-    def passed_detialInfo_name1(self):
+    def passed_detailInfo_name1(self):
         return  self.find_elements(*self.passed_detial_name)[1].text
 
-    def passed_detialInfo_status0(self):
+    def passed_detailInfo_status0(self):
         passed_detail_status0 = self.find_elements(*self.passed_detail_status)[0].text
 
-    def passed_detialInfo_status1(self):
+    def passed_detailInfo_status1(self):
         passed_detail_status1 = self.find_elements(*self.passed_detail_status)[1].text
 
 
@@ -179,7 +179,7 @@ class processResult(Page):
     failed_detail_starttime=(By.ID,"com.uniubi.attendance:id/tv_process_start_time")
     failed_detail_endtime = (By.ID, "com.uniubi.attendance:id/tv_process_end_time")
     failed_detail_reason=(By.ID,"com.uniubi.attendance:id/tv_process_reason")
-    failed_detial_name=(By.ID,"com.uniubi.attendance:id/tv_process_detail_name")
+    failed_detail_name=(By.ID,"com.uniubi.attendance:id/tv_process_detail_name")
     failed_detail_status=(By.ID,"com.uniubi.attendance:id/tv_process_detail_type")
 
 #点击已通过
@@ -203,32 +203,32 @@ class processResult(Page):
             print("找不到" + type)
 #详情信息
 
-    def failed_detialInfo_title(self):
+    def failed_detailInfo_title(self):
         return self.find_element(*self.failed_detail_title).text
 
-    def failed_detialInfo_starttime(self):
+    def failed_detailInfo_starttime(self):
         return self.find_element(*self.failed_detail_starttime).text
 
-    def failed_detialInfo_endtime(self):
+    def failed_detailInfo_endtime(self):
         return  self.find_element(*self.failed_detail_endtime).text
 
-    def failed_detialInfo_reason(self):
+    def failed_detailInfo_reason(self):
         return  self.find_element(*self.failed_detail_reason).text
 
-    def failed_detialInfo_name0(self):
-        return  self.find_elements(*self.failed_detial_name)[0].text
+    def failed_detailInfo_name0(self):
+        return  self.find_elements(*self.failed_detail_name)[0].text
 
-    def failed_detialInfo_name1(self):
-        return  self.find_elements(*self.failed_detial_name)[1].text
+    def failed_detailInfo_name1(self):
+        return  self.find_elements(*self.failed_detail_name)[1].text
 
-    def failed_detialInfo_status0(self):
+    def failed_detailInfo_status0(self):
         return self.find_elements(*self.failed_detail_status)[0].text
 
-    def failed_detialInfo_status1(self):
+    def failed_detailInfo_status1(self):
         return self.find_elements(*self.failed_detail_status)[1].text
 
 #定义统一已拒绝接口
-    def failed(self):
+    def failed(self,type):
         sleep(5)
         #点击菜单栏中的流程
         self.process_click()
@@ -248,7 +248,7 @@ class processResult(Page):
     approving_detail_starttime=(By.ID,"com.uniubi.attendance:id/tv_process_start_time")
     approving_detail_endtime = (By.ID, "com.uniubi.attendance:id/tv_process_end_time")
     approving_detail_reason=(By.ID,"com.uniubi.attendance:id/tv_process_reason")
-    approving_detial_name=(By.ID,"com.uniubi.attendance:id/tv_process_detail_name")
+    approving_detail_name=(By.ID,"com.uniubi.attendance:id/tv_process_detail_name")
     approving_detail_status=(By.ID,"com.uniubi.attendance:id/tv_process_detail_type")
     approving_detail_agree=(By.ID,"com.uniubi.attendance:id/rb_process1")
     approving_detail_hard = (By.ID, "com.uniubi.attendance:id/rb_process2")
@@ -285,28 +285,28 @@ class processResult(Page):
 
 #需要审批中的详情
 
-    def approving_detialInfo_title(self):
+    def approving_detailInfo_title(self):
         return self.find_element(*self.approving_detail_title).text
 
-    def approving_detialInfo_starttime(self):
+    def approving_detailInfo_starttime(self):
         return self.find_element(*self.approving_detail_starttime).text
 
-    def approving_detialInfo_endtime(self):
+    def approving_detailInfo_endtime(self):
         return  self.find_element(*self.approving_detail_endtime).text
 
-    def approving_detialInfo_reason(self):
+    def approving_detailInfo_reason(self):
         return  self.find_element(*self.approving_detail_reason).text
 
-    def approving_detialInfo_name0(self):
-        return  self.find_elements(*self.approving_detial_name)[0].text
+    def approving_detailInfo_name0(self):
+        return  self.find_elements(*self.approving_detail_name)[0].text
 
-    def approving_detialInfo_name1(self):
-        return  self.find_elements(*self.approving_detial_name)[1].text
+    def approving_detailInfo_name1(self):
+        return  self.find_elements(*self.approving_detail_name)[1].text
 
-    def approving_detialInfo_status0(self):
+    def approving_detailInfo_status0(self):
         return self.find_elements(*self.approving_detail_status)[0].text
 
-    def approving_detialInfo_status1(self):
+    def approving_detailInfo_status1(self):
         return self.find_elements(*self.approving_detail_status)[1].text
 
     def approving_detailInfo_agree(self):
@@ -322,7 +322,7 @@ class processResult(Page):
         self.find_element(*self.approving_detail_noreason).click()
 
     def approving_detailInfo_reconsider(self):
-        self.find_element(*self.approving_reconsider).click()
+        self.find_element(*self.approving_detail_reconsider).click()
 #点击通过
     def approving_agreebutton_click(self):
         self.find_element(*self.approving_detail_agreebutton).click()
@@ -365,16 +365,16 @@ class processResult(Page):
             self.approving_detailInfo_agree()
         elif (reason=="辛苦"):
             #点击辛苦
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_hard()
         elif (reason=="拒绝"):
             #点击拒绝
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_disagree()
         elif (reason=="理由不充分"):
             #点击理由不充分
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_noreason()
         elif (reason=="复议"):
             #点击复议
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_reconsider()
         else:
             self.approving_detailInfo_agree()
 
@@ -407,16 +407,16 @@ class processResult(Page):
             self.approving_detailInfo_agree()
         elif (reason=="辛苦"):
             #点击辛苦
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_hard()
         elif (reason=="拒绝"):
             #点击拒绝
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_disagree()
         elif (reason=="理由不充分"):
             #点击理由不充分
-            self.approving_detailInfo_agree()
-        elif (reason=="服役"):
-            #点击服役
-            self.approving_detailInfo_agree()
+            self.approving_detailInfo_noreason()
+        elif (reason=="复议"):
+            #点击复议
+            self.approving_detailInfo_reconsider()
         else:
             self.approving_detailInfo_agree()
 
@@ -424,8 +424,7 @@ class processResult(Page):
             self.approving_agreebutton_click()
             sleep(2)
             self.approving_notbutton_click()
-            self.approving_agreebutton_click()
-            self.approving_surebutton_click()
+            sleep(1)
             self.driver.keyevent(4)
 
         else:
@@ -445,12 +444,12 @@ class processResult(Page):
     approved_detail_starttime = (By.ID, "com.uniubi.attendance:id/tv_process_start_time")
     approved_detail_endtime = (By.ID, "com.uniubi.attendance:id/tv_process_end_time")
     approved_detail_reason = (By.ID, "com.uniubi.attendance:id/tv_process_reason")
-    approved_detial_name = (By.ID, "com.uniubi.attendance:id/tv_process_detail_name")
+    approved_detail_name = (By.ID, "com.uniubi.attendance:id/tv_process_detail_name")
     approved_detail_status = (By.ID, "com.uniubi.attendance:id/tv_process_detail_type")
 
-    # 点击等待我审批
+    # 点击已我审批
     def approved_click(self):
-        self.find_elements(*self.approved_loc)[3].click()
+        self.find_elements(*self.approved_loc)[4].click()
 
         # 判断需要请假的人和请假的类型
 
@@ -472,40 +471,40 @@ class processResult(Page):
                 break
 
 
-                # 需要审批中的详情
+                # 已审批中的详情
 
-    def approved_detialInfo_title(self):
+    def approved_detailInfo_title(self):
         return self.find_element(*self.approved_detail_title).text
 
-    def approved_detialInfo_starttime(self):
+    def approved_detailInfo_starttime(self):
         return self.find_element(*self.approved_detail_starttime).text
 
-    def approved_detialInfo_endtime(self):
+    def approved_detailInfo_endtime(self):
         return self.find_element(*self.approved_detail_endtime).text
 
-    def approved_detialInfo_reason(self):
+    def approved_detailInfo_reason(self):
         return self.find_element(*self.approved_detail_reason).text
 
-    def approved_detialInfo_name0(self):
-        return self.find_elements(*self.approved_detial_name)[0].text
+    def approved_detailInfo_name0(self):
+        return self.find_elements(*self.approved_detail_name)[0].text
 
-    def approved_detialInfo_name1(self):
-        return self.find_elements(*self.approved_detial_name)[1].text
+    def approved_detailInfo_name1(self):
+        return self.find_elements(*self.approved_detail_name)[1].text
 
-    def approved_detialInfo_name2(self):
-        return self.find_elements(*self.approved_detial_name)[2].text
+    def approved_detailInfo_name2(self):
+        return self.find_elements(*self.approved_detail_name)[2].text
 
-    def approved_detialInfo_status0(self):
+    def approved_detailInfo_status0(self):
         return self.find_elements(*self.approved_detail_status)[0].text
 
-    def approved_detialInfo_status1(self):
+    def approved_detailInfo_status1(self):
         return self.find_elements(*self.approved_detail_status)[1].text
 
-    def approved_detialInfo_status2(self):
+    def approved_detailInfo_status2(self):
         return self.find_elements(*self.approved_detail_status)[2].text
 
 #定义统一已审批解决
-    def approved(self,name,tpye):
+    def approved(self,name,type):
         sleep(5)
         #点击流程
         self.process_click()
