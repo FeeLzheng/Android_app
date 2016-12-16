@@ -150,11 +150,17 @@ class processResult(Page):
     def passed_detailInfo_name1(self):
         return  self.find_elements(*self.passed_detial_name)[1].text
 
+    def passed_detailInfo_name2(self):
+        return  self.find_elements(*self.passed_detial_name)[2].text
+
     def passed_detailInfo_status0(self):
-        passed_detail_status0 = self.find_elements(*self.passed_detail_status)[0].text
+        return self.find_elements(*self.passed_detail_status)[0].text
 
     def passed_detailInfo_status1(self):
-        passed_detail_status1 = self.find_elements(*self.passed_detail_status)[1].text
+         return self.find_elements(*self.passed_detail_status)[1].text
+
+    def passed_detailInfo_status2(self):
+         return self.find_elements(*self.passed_detail_status)[2].text
 
 
 
@@ -221,11 +227,17 @@ class processResult(Page):
     def failed_detailInfo_name1(self):
         return  self.find_elements(*self.failed_detail_name)[1].text
 
+    def failed_detailInfo_name2(self):
+        return  self.find_elements(*self.failed_detail_name)[2].text
+
     def failed_detailInfo_status0(self):
         return self.find_elements(*self.failed_detail_status)[0].text
 
     def failed_detailInfo_status1(self):
         return self.find_elements(*self.failed_detail_status)[1].text
+
+    def failed_detailInfo_status2(self):
+        return self.find_elements(*self.failed_detail_status)[2].text
 
 #定义统一已拒绝接口
     def failed(self,type):
@@ -268,6 +280,7 @@ class processResult(Page):
 #判断需要请假的人和请假的类型
 
     def approving_detail_click(self,name,type):
+        sleep(2)
         i=0
         while (i<10):
             n=self.find_elements(*self.approving_name_loc)[i]
@@ -279,6 +292,7 @@ class processResult(Page):
                     j=j+1
                     if(t.text==type):
                         t.click()
+                        sleep(1)
                         break
                 break
 
@@ -306,8 +320,14 @@ class processResult(Page):
     def approving_detailInfo_status0(self):
         return self.find_elements(*self.approving_detail_status)[0].text
 
+    def approving_detailInfo_status2(self):
+        return self.find_elements(*self.approving_detail_status)[2].text
+
     def approving_detailInfo_status1(self):
         return self.find_elements(*self.approving_detail_status)[1].text
+
+    def approving_detailInfo_status2(self):
+        return self.find_elements(*self.approving_detail_status)[2].text
 
     def approving_detailInfo_agree(self):
         self.find_element(*self.approving_detail_agree).click()
