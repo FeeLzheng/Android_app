@@ -322,11 +322,12 @@ class process(Page):
         a=self.Systemtime2()
         print(a)
         self.resigned_click()
+        print(datetime.datetime.now())
         # 获取系统时间
         #点击补签时间
         self.resign_time_click()
-        # print(self.find_elements(*self.start_time)[1].text)
-        # print(self.find_elements(*self.start_time)[2].text)
+        print(self.find_elements(*self.start_time)[1].text)
+        print(self.find_elements(*self.start_time)[2].text)
 
 
         #选择补签时间
@@ -450,6 +451,7 @@ class process(Page):
         self.approver_employee()
         #提交
         self.other_commit()
+        sleep(2)
 
     def other_withoutendtime(self,title,reason):
         sleep(5)
@@ -476,6 +478,7 @@ class process(Page):
         self.approver_employee()
         #提交
         self.other_commit()
+        sleep(2)
 
 #请出差假
 

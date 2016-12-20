@@ -155,6 +155,7 @@ class processTest(myunit.MyTest):
 
         def test_process14(self):
             """其他假（有结束时间）：点击申请中，查看详情并且进行撤销操作"""
+            processResult(self.driver).processing_detail("其他申请")
             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "其他:陪客户吃饭")
             #其他申请的开始时
             Date1=process(self.driver).returnSystemtime1()-datetime.timedelta(hours=1)-datetime.timedelta(minutes=1)
@@ -186,6 +187,7 @@ class processTest(myunit.MyTest):
 
         def test_process16(self):
             """其他假（无结束时间）：点击申请中，查看详情并且进行撤销操作"""
+            processResult(self.driver).processing_detail("其他申请")
             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "其他:陪客户吃饭")
             #其他申请的开始时
 
@@ -214,7 +216,9 @@ class processTest(myunit.MyTest):
             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "补签")
             # 补签申请
             print(process(self.driver).returnSystemtime2())
+            print("获取到时间")
             Date1 = process(self.driver).returnSystemtime2() - datetime.timedelta(hours=1) - datetime.timedelta(minutes=1)
+            print(Date1)
             time1 = Date1.strftime('%Y')
             # 把时间中出现的2位时间转换为1位  如09变9
             time1_m = int(Date1.strftime('%m'))
@@ -281,7 +285,7 @@ class processTest(myunit.MyTest):
 
 
         def test_process20(self):
-            """查看已拒绝中的出差：对比已通过中的出差详情"""
+            """查看已拒绝中的出差：对比已拒绝中的出差详情"""
             processResult(self.driver).failed("出差申请")
             self.assertEqual(processResult(self.driver).failed_detailInfo_title(), "出差")
             self.assertEqual(processResult(self.driver).failed_detailInfo_starttime(),outwork_futuretime1)
@@ -297,9 +301,9 @@ class processTest(myunit.MyTest):
         def test_process21(self):
             """查看已审批中的出差：且对比详情数据"""
             #切换审批人账号
-            # # login(self.driver).logoff()
-            # # login(self.driver).login(processTest().email_approver1, processTest().password_approver1)
-            # processResult(self.driver).approved(processTest().applier, "出差")
+            login(self.driver).logoff()
+            login(self.driver).login(processTest().email_approver1, processTest().password_approver1)
+            processResult(self.driver).approved(processTest().applier, "出差")
             self.assertEqual(processResult(self.driver).approved_detailInfo_title(), "出差")
             self.assertEqual(processResult(self.driver).approved_detailInfo_starttime(), outwork_futuretime1)
             self.assertEqual(processResult(self.driver).approved_detailInfo_endtime(), outwork_futuretime1)
@@ -570,6 +574,7 @@ class processTest(myunit.MyTest):
             self.assertEqual(processResult(self.driver).processing_detailInfo_name2(), processTest().approver_employee2)
 
             processResult(self.driver).approving_detail2("辛苦", "拒绝")
+
 
 
         def test_process32(self):
@@ -1021,27 +1026,27 @@ class processTest(myunit.MyTest):
 
         def test_process52(self):
             """"审批年假--通过（有第二审批人）--第一审批人通过：申请年假，切换账号，审批-通过。第二审批人：切换账号，审批-通过"""
-            # # 切换申请人账号
-            # login(self.driver).logoff()
-            # login(self.driver).login(processTest().email_applier1, processTest().password_applier1)
-            # process(self.driver).leave(3, 13, 0, 15, 0, "请年假二小时，有事情")  # 请年假，13点到15点
-            # login(self.driver).logoff()
-            # login(self.driver).login(processTest().email_approver1, processTest().password_approver1)
-            # processResult(self.driver).approving(processTest().applier, "请假")
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:年假")
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),
-            #                  (processTest().Today + "  13:00"))
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),
-            #                  (processTest().Today + "  15:00"))
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请年假二小时，有事情")
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), processTest().applier)
-            # self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), processTest().approver_employee)
-            # processResult(self.driver).approving_detail1("同意", "通过")
-            # 换第二审批人账号
-            # login(self.driver).logoff()
-            # login(self.driver).login(processTest().email_approver2, processTest().password_approver2)
+            # 切换申请人账号
+            login(self.driver).logoff()
+            login(self.driver).login(processTest().email_applier1, processTest().password_applier1)
+            process(self.driver).leave(3, 13, 0, 15, 0, "请年假二小时，有事情")  # 请年假，13点到15点
+            login(self.driver).logoff()
+            login(self.driver).login(processTest().email_approver1, processTest().password_approver1)
+            processResult(self.driver).approving(processTest().applier, "请假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:年假")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),
+                             (processTest().Today + "  13:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_endtime(),
+                             (processTest().Today + "  15:00"))
+            self.assertEqual(processResult(self.driver).processing_detailInfo_reason(), "请年假二小时，有事情")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status0(), "发起申请")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_status1(), "审批中")
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name0(), processTest().applier)
+            self.assertEqual(processResult(self.driver).processing_detailInfo_name1(), processTest().approver_employee)
+            processResult(self.driver).approving_detail1("同意", "通过")
+            #换第二审批人账号
+            login(self.driver).logoff()
+            login(self.driver).login(processTest().email_approver2, processTest().password_approver2)
             processResult(self.driver).approving(processTest().applier, "请假")
             self.assertEqual(processResult(self.driver).processing_detailInfo_title(), "请假:年假")
             self.assertEqual(processResult(self.driver).processing_detailInfo_starttime(),
@@ -1538,8 +1543,34 @@ class processTest(myunit.MyTest):
 
 
 if __name__=="__main__":
-    # unittest.main()
-    suite=unittest.TestSuite()
+    unittest.main()
+    # suite=unittest.TestSuite()
+    # suite.addTest(processTest("test_process1"))
+    # suite.addTest(processTest("test_process2"))
+    # suite.addTest(processTest("test_process3"))
+    # suite.addTest(processTest("test_process4"))
+    # suite.addTest(processTest("test_process5"))
+    # suite.addTest(processTest("test_process6"))
+    # suite.addTest(processTest("test_process7"))
+    # suite.addTest(processTest("test_process8"))
+    # suite.addTest(processTest("test_process9"))
+    # suite.addTest(processTest("test_process10"))
+    # suite.addTest(processTest("test_process11"))
+    # suite.addTest(processTest("test_process12"))
+    # suite.addTest(processTest("test_process13"))
+    # suite.addTest(processTest("test_process14"))
+    # suite.addTest(processTest("test_process15"))
+    # suite.addTest(processTest("test_process16"))
+    # suite.addTest(processTest("test_process17"))
+
+
+    # suite.addTest(processTest("test_process18"))
+    # suite.addTest(processTest("test_process19"))
+    # suite.addTest(processTest("test_process20"))
+    # suite.addTest(processTest("test_process21"))
+    # suite.addTest(processTest("test_process22"))
+    # suite.addTest(processTest("test_process23"))
+    # suite.addTest(processTest("test_process24"))
     # suite.addTest(processTest("test_process25"))
     # suite.addTest(processTest("test_process26"))
     # suite.addTest(processTest("test_process27"))
@@ -1585,12 +1616,12 @@ if __name__=="__main__":
     # suite.addTest(processTest("test_process68"))
     # suite.addTest(processTest("test_process69"))
     # suite.addTest(processTest("test_process70"))
-    suite.addTest(processTest("test_process71"))
-    suite.addTest(processTest("test_process72"))
-    suite.addTest(processTest("test_process73"))
-    suite.addTest(processTest("test_process74"))
-    runner =unittest.TextTestRunner()
-    runner.run(suite)
+    # suite.addTest(processTest("test_process71"))
+    # suite.addTest(processTest("test_process72"))
+    # suite.addTest(processTest("test_process73"))
+    # suite.addTest(processTest("test_process74"))
+    # runner =unittest.TextTestRunner()
+    # runner.run(suite)
 
 
 

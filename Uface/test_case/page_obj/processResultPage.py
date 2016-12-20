@@ -174,6 +174,7 @@ class processResult(Page):
         self.passed_click()
         #选择需要查看的流程
         self.passed_detail_click(type)
+        sleep(2)
 
 
 
@@ -530,6 +531,7 @@ class processResult(Page):
         self.process_click()
         #点击已经审批
         self.approved_click()
+        sleep(2)
         #选择需要查看的已审批中流程的详情
         self.approved_detail_click(name,type)
 

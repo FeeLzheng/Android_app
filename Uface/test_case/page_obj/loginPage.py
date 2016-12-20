@@ -125,7 +125,7 @@ class login(Page):
 
     #定义统一退出接口
     def logoff(self):
-        sleep(5)
+        sleep(7)
         #点击菜单栏中的我
         self.mine_click()
         #点击设置
@@ -138,6 +138,7 @@ class login(Page):
         self.logoff_click()
         #点击确认
         self.setting_sureButton_click()
+        sleep(1)
 
 
 
